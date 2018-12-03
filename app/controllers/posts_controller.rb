@@ -2,6 +2,15 @@ class PostsController < ApplicationController
   before_action :set_post, only: [:show, :update, :destroy]
 
   # GET /posts
+
+  def getcsv
+    @posts = Post.all
+    respond_to do |format|
+      format.csv { send_data @posts.to_csv, filename: "posts-#{Date.today}.csv" }
+    end
+  end
+
+
   def index
     @posts = Post.all
 

@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
   resources :posts do
+    collection do
+      get 'getcsv'
+    end
     resources :comments
   end
   resources :comments do
